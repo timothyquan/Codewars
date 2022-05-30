@@ -14,8 +14,11 @@ def print_pyramid(pyramid):
 
 
 def longest_slide_down(pyramid):
-    for i in range(len(pyramid)-2, 0, -1):
-        print(f'row: {i}')
+    for r in range(len(pyramid)-2, -1, -1):
+        for i in range(r+1):
+            pyramid[r][i] += max(pyramid[r+1][i:i+2])
+    return pyramid[0][0]       
+        
      
 
 
@@ -41,8 +44,5 @@ big_p = [
 
 small_p = [[3], [7, 4], [2, 4, 6], [8, 5, 9, 3]]
 
-print_pyramid(small_p)
-
-
-longest_slide_down(small_p)
+assert longest_slide_down(big_p) == 1074
 
